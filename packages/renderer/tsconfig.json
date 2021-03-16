@@ -1,0 +1,30 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "/@/*": [
+        "./src/*"
+      ],
+      "/@/common": [
+        "../common/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      }
+    ],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
+  },
+
+  "include": [
+    "src/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "types/**/*.d.ts",
+    "../../types/**/*.d.ts",
+    "../preload/types/electron-api.d.ts"
+  ]
+}
