@@ -62,6 +62,7 @@ function debounce(f, ms) {
     spawnProcess.stderr.on('data', d => {
       if (d.toString().indexOf('GL_INVALID_OPERATION') !== -1) return
       if (d.toString().indexOf('GL_INVALID_VALUE') !== -1) return
+      if (d.toString().indexOf('ExtensionLoadWarning') !== -1) return
       console.error(d.toString())
     })
     require('async-exit-hook')(() => {

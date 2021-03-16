@@ -11,7 +11,7 @@ const Index = () => {
   const getB = async () => {
 const {request} = useElectron()
 const test = new Test({request})
-    const res = await test.getBaidu('http://baidu.com')
+    const res = await test.getBaidu('http://www.baidu.com')
     console.log(2222, res)
   }
 

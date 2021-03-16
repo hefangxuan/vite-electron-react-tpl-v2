@@ -25,8 +25,7 @@ export const sleep = (ms: number) => new Promise(resolve => {
  */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const env = import.meta.env
+export const {MODE, VITE_DEV_SERVER_URL} = import.meta.env
 
-export const isDevEnv = env.MODE === 'development'
+export const isDevEnv = MODE === 'development'
 
-export const VITE_DEV_SERVER_URL = env.VITE_DEV_SERVER_URL
