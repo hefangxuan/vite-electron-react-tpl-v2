@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { ConfigProvider } from 'antd'
-import zhCN from 'antd/lib/locale/zh_CN'
-import App from '/@/router'
-import './styles/global.less'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN';
+import App from '/@/router';
+import './styles/global.less';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,4 +12,4 @@ ReactDOM.render(
     </ConfigProvider>
   </React.StrictMode>,
   document.getElementById('app'),
-)
+);

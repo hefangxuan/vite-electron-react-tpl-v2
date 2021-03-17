@@ -1,5 +1,5 @@
-import _request from 'request-promise'
-import {isJSON} from '../utils'
+import _request from 'request-promise';
+import { isJSON } from '../utils';
 
 export type RequestProps = {} & _request.RequestPromiseOptions;
 /**
@@ -13,7 +13,7 @@ export async function request(url: string, options: RequestProps) {
     json: true,
     rejectUnauthorized: false,
     transform: async (body: any) => {
-      return isJSON(body) ? JSON.parse(body) : body
+      return isJSON(body) ? JSON.parse(body) : body;
     },
     method: 'get',
     headers: {
@@ -21,6 +21,6 @@ export async function request(url: string, options: RequestProps) {
     },
     ...options,
   }).catch((e: any) => {
-    console.log('请求遇到错误', e)
-  })
+    console.log('请求遇到错误', e);
+  });
 }

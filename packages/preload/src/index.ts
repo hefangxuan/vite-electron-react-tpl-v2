@@ -1,17 +1,19 @@
-import {contextBridge} from 'electron'
-import {request} from '../../common/request'
+import { contextBridge } from 'electron';
+import { request } from '../../common/request';
 
-const {appName, appId, version} = require('../../../package.json')
+const { appName, appId, version } = require('../../../package.json');
 
-const apiKey = 'electron'
+const apiKey = 'electron';
 /**
  * @see https://github.com/electron/electron/issues/21437#issuecomment-573522360
  */
 const api: ElectronApi = {
-  appName, appId, version,
+  appName,
+  appId,
+  version,
   versions: process.versions as Record<string, string>,
-  request: request,
-}
+  request,
+};
 
 if (import.meta.env.MODE !== 'test') {
   /**
@@ -20,9 +22,8 @@ if (import.meta.env.MODE !== 'test') {
    *
    * @see https://www.electronjs.org/docs/api/context-bridge
    */
-  contextBridge.exposeInMainWorld(apiKey, api)
+  contextBridge.exposeInMainWorld(apiKey, api);
 } else {
-
   /**
    * Recursively Object.freeze() on objects and functions
    * @see https://github.com/substack/deep-freeze
@@ -32,20 +33,20 @@ if (import.meta.env.MODE !== 'test') {
   function deepFreeze(obj: any) {
     if (typeof obj === 'object' && obj !== null) {
       Object.keys(obj).forEach((prop) => {
-        const val = obj[prop]
+        const val = obj[prop];
         if ((typeof val === 'object' || typeof val === 'function') && !Object.isFrozen(val)) {
-          deepFreeze(val)
+          deepFreeze(val);
         }
-      })
+      });
     }
 
-    return Object.freeze(obj)
+    return Object.freeze(obj);
   }
 
-  deepFreeze(api)
+  deepFreeze(api);
 
-  window[apiKey] = api
+  window[apiKey] = api;
 
   // Need for Spectron tests
-  window.electronRequire = require
+  window.electronRequire = require;
 }

@@ -1,4 +1,4 @@
-const { appName, version: appVersion, appId } = require('./package.json')
+const { appName, version: appVersion, appId } = require('./package.json');
 
 /**
  * @type {import('electron-builder').Configuration}
@@ -51,7 +51,5 @@ module.exports = {
     shortcutName: '${productName} v${buildVersion}',
   },
   // 添加要引入的文件,!是不引入即排除
-  files: [
-    'packages/**/dist/**',
-  ],
-}
+  files: ['packages/**/dist/**'],
+};

@@ -1,6 +1,6 @@
-import React from 'react'
-import { routers } from '/@/config/router'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { routers } from '/@/config/router';
+import { Link } from 'react-router-dom';
 
 const Layout = React.memo((props: any) => {
   return (
@@ -11,12 +11,12 @@ const Layout = React.memo((props: any) => {
             <Link key={route.path} to={route.path}>
               {route.name}
             </Link>
-          )
+          );
         })}
       </div>
       {props.children}
     </div>
-  )
-})
+  );
+});
 
-export default Layout
+export default Layout;

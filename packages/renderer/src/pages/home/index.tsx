@@ -1,5 +1,5 @@
-import React from 'react'
-import { PageHeader } from '@hefx/cmp'
+import React from 'react';
+import { PageHeader } from '@hefx/cmp';
 
 const Home = (props: any) => (
   <div className="vh-100 w-100 d-flex flex-column flex-between">
@@ -10,6 +10,6 @@ const Home = (props: any) => (
       </div>
     </PageHeader>
   </div>
-)
+);
 
-export default Home
+export default Home;

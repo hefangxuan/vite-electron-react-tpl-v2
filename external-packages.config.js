@@ -12,8 +12,7 @@ export const external = [
   'request-promise',
   'request',
   'electron-store',
-]
-
+];
 
 export const builtins = [
   'assert',
@@ -54,9 +53,6 @@ export const builtins = [
   'v8',
   'vm',
   'zlib',
-]
+];
 
-export default [
-  ...builtins,
-  ...external,
-]
+export default [...builtins, ...external];

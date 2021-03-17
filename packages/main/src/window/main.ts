@@ -1,6 +1,6 @@
-import { BrowserWindow, screen } from 'electron'
-import { options, getLoadURL, WinSubscribe, EventCallback } from './utils'
-import { isDevEnv } from '/@/common/utils'
+import { BrowserWindow, screen } from 'electron';
+import { options, getLoadURL, WinSubscribe, EventCallback } from './utils';
+import { isDevEnv } from '/@/common/utils';
 
 export class Main extends WinSubscribe {
   public static events: Record<string, Array<EventCallback>> = {};
@@ -10,11 +10,11 @@ export class Main extends WinSubscribe {
   public url = getLoadURL();
 
   constructor(private opts?: Electron.BrowserWindowConstructorOptions) {
-    super(Main.events)
+    super(Main.events);
   }
 
   public open() {
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
     this.win = new BrowserWindow({
       ...options,
       width: width * 0.8,
@@ -26,24 +26,24 @@ export class Main extends WinSubscribe {
       backgroundColor: '#fff',
       title: '草鞋没号',
       ...this.opts,
-    })
+    });
 
     // 隐藏默认菜单
-    this.win.setMenuBarVisibility(false)
+    this.win.setMenuBarVisibility(false);
 
     if (isDevEnv) {
-      this.win.webContents.openDevTools()
+      this.win.webContents.openDevTools();
     }
-    this.win.loadURL(this.url).catch(console.log)
+    this.win.loadURL(this.url).catch(console.log);
   }
 
   public close() {
     if (!this.win) {
-      return
+      return;
     }
     if (this.win.isClosable()) {
-      this.win.close()
-      this.win = null
+      this.win.close();
+      this.win = null;
     }
   }
 }

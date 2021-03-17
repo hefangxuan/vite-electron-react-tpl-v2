@@ -1,17 +1,14 @@
-
-
 class Test {
   // 请求函数
-  request: any
+  request: any;
   constructor(options: any) {
-    const {request} = options
-    this.request = request
+    const { request } = options;
+    this.request = request;
   }
 
   getBaidu(url: string) {
-    return this.request(url, {method: 'get'})
+    return this.request(url, { method: 'get' });
   }
 }
 
-
-export default Test
+export default Test;

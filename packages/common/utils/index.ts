@@ -4,20 +4,21 @@
  */
 export const isJSON = (str: string) => {
   try {
-    const obj = JSON.parse(str)
-    return !!(typeof obj === 'object' && obj)
+    const obj = JSON.parse(str);
+    return !!(typeof obj === 'object' && obj);
   } catch (e) {
-    return false
+    return false;
   }
-}
+};
 
 /**
  * 延迟函数
  * @param ms
  */
-export const sleep = (ms: number) => new Promise(resolve => {
-  setTimeout(resolve, ms)
-})
+export const sleep = (ms: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 
 /**
  * Workaround for TypeScript bug
@@ -25,7 +26,6 @@ export const sleep = (ms: number) => new Promise(resolve => {
  */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const {MODE, VITE_DEV_SERVER_URL} = import.meta.env
+export const { MODE, VITE_DEV_SERVER_URL } = import.meta.env;
 
-export const isDevEnv = MODE === 'development'
-
+export const isDevEnv = MODE === 'development';
