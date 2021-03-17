@@ -33,7 +33,11 @@ if (!gotTheLock) {
    */
   function init() {
     initIpc()
+
+    // 优先启动loading窗口
     const motionWin = new Motion()
+    motionWin.open()
+
     const mainWin = new Main({ show: false })
 
     const mainOpen = () => {
@@ -47,7 +51,6 @@ if (!gotTheLock) {
     }
 
     mainOpen()
-    motionWin.open()
     // const user: User = (userStore.get(USER_INFO) ?? {}) as User;
 
     // if (user.token) {

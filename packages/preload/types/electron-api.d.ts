@@ -1,7 +1,9 @@
-
 interface ElectronApi {
   readonly versions: Record<string, string>
-  request
+  request,
+  appName: string,
+  appId: string,
+  version: string
 }
 
 declare interface Window {

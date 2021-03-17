@@ -1,11 +1,14 @@
 import {contextBridge} from 'electron'
 import {request} from '../../common/request'
 
+const {appName, appId, version} = require('../../../package.json')
+
 const apiKey = 'electron'
 /**
  * @see https://github.com/electron/electron/issues/21437#issuecomment-573522360
  */
 const api: ElectronApi = {
+  appName, appId, version,
   versions: process.versions as Record<string, string>,
   request: request,
 }
