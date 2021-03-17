@@ -1,7 +1,7 @@
 import _request from 'request-promise';
 import { isJSON } from '../utils';
 
-export type RequestProps = {} & _request.RequestPromiseOptions;
+export type RequestProps = _request.RequestPromiseOptions;
 /**
  * 本api配置文件的请求函数封装
  * @param url

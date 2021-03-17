@@ -1,5 +1,5 @@
 import { contextBridge } from 'electron';
-import { request } from '../../common/request';
+import { request, RequestProps } from '../../common/request';
 
 const { appName, appId, version } = require('../../../package.json');
 
@@ -12,7 +12,7 @@ const api: ElectronApi = {
   appId,
   version,
   versions: process.versions as Record<string, string>,
-  request,
+  request: async (url: string, options: RequestProps) => await request(url, options),
 };
 
 if (import.meta.env.MODE !== 'test') {

@@ -1,6 +1,6 @@
 interface ElectronApi {
   readonly versions: Record<string, string>;
-  request;
+  readonly request;
   appName: string;
   appId: string;
   version: string;
