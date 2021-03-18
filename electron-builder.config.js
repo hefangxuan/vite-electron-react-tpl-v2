@@ -28,7 +28,7 @@ module.exports = {
   // win 配置
   win: {
     target: 'nsis',
-    icon: 'src/public/icon.ico',
+    icon: 'packages/common/icons/icon.ico',
   },
   // 关于自动更新的
   publish: [
