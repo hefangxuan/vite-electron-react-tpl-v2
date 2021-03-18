@@ -1,5 +1,6 @@
 import { contextBridge } from 'electron';
 import { request, RequestProps } from '../../common/request';
+import { getMachineInfo, checkMachineInfoParams } from '../../common/machineInfo';
 
 const { appName, appId, version } = require('../../../package.json');
 
@@ -13,6 +14,8 @@ const api: ElectronApi = {
   version,
   versions: process.versions as Record<string, string>,
   request: async (url: string, options: RequestProps) => await request(url, options),
+  getMachineInfo,
+  checkMachineInfoParams,
 };
 
 if (import.meta.env.MODE !== 'test') {

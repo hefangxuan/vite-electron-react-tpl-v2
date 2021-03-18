@@ -6,6 +6,7 @@ import { Main, Motion } from './window';
 import { globalConfig } from '/@/common/store';
 import { isDevEnv } from '/@/common/utils';
 import installExtension from 'electron-devtools-installer';
+import { getMachineInfo } from '/@/common/machineInfo';
 
 // 锁定单实例
 const gotTheLock = app.requestSingleInstanceLock();
@@ -33,6 +34,7 @@ if (!gotTheLock) {
   function init() {
     initIpc();
 
+    console.log(11111, getMachineInfo());
     // 优先启动loading窗口
     const motionWin = new Motion();
     motionWin.open();

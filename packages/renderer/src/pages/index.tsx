@@ -7,10 +7,10 @@ import Test from '../../../common/apis/test';
 
 const Index = () => {
   const getB = async () => {
-    const { request } = useElectron();
+    const { request, getMachineInfo, checkMachineInfoParams } = useElectron();
     const test = new Test({ request });
     const res = await test.getBaidu('http://www.baidu.com');
-    console.log(2222, res);
+    console.log(2222, res, getMachineInfo(), checkMachineInfoParams());
   };
 
   return (

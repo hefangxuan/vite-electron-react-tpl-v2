@@ -4,6 +4,8 @@ interface ElectronApi {
   appName: string;
   appId: string;
   version: string;
+  checkMachineInfoParams;
+  getMachineInfo;
 }
 
 declare interface Window {

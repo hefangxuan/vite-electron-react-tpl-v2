@@ -12,6 +12,7 @@ export const external = [
   'request-promise',
   'request',
   'electron-store',
+  'getmac',
 ];
 
 export const builtins = [
