@@ -1,6 +1,11 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron';
 import { request, RequestProps } from '../../common/request';
-import { getMachineInfo, checkMachineInfoParams } from '../../common/machineInfo';
+import {
+  getMachineInfo,
+  checkMachineInfoParams,
+  checkAuthorization,
+  createOrUpdateMachineInfo,
+} from '../../common/authorization';
 
 const { appName, appId, version } = require('../../../package.json');
 
@@ -16,6 +21,11 @@ const api: ElectronApi = {
   request: async (url: string, options: RequestProps) => await request(url, options),
   getMachineInfo,
   checkMachineInfoParams,
+  checkAuthorization,
+  createOrUpdateMachineInfo,
+  openMain: () => {
+    ipcRenderer.send('openMain');
+  },
 };
 
 if (import.meta.env.MODE !== 'test') {

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>软件授权</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .b-h {
+      height: 100vh;
+    }
+
+    .body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .macinfo {
+      display: flex;
+      align-items: center;
+    }
+
+    .ml-12 {
+      margin-left: 12px;
+    }
+
+    .mt-12 {
+      margin-top: 12px;
+    }
+
+    .text-orange {
+      color: orange;
+    }
+
+    .text-gray {
+      color: gray;
+    }
+
+    .button {
+      background-color: orange; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      outline: none;
+    }
+
+    .button1 {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .button2:hover {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .cursor {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class='b-h'>
+  <div class='body'>
+    <h1 class='title'>对不起您的机器码未正确授权</h1>
+    <div class='macinfo'>
+      <div class='text-gray'>机器码:</div>
+      <div class='ml-12 text-orange'>ABCD-DSJ23939-DJJKK-394888</div>
+      <div id='copy' class='cursor text-gray ml-12' onclick="copyToClip('ABCD-DSJ23939-DJJKK-394888')">
+        复制
+      </div>
+    </div>
+    <div class='mt-12'>
+      <button id='shouquan' class='button button2' onclick='shouquanFn()' style='vertical-align:middle'>申请授权</button>
+      <button id='shuaxin' class='button button2' onclick='shuaxinFn()' style='vertical-align:middle'>刷新重试</button>
+    </div>
+  </div>
+</div>
+<script>
+  const { createOrUpdateMachineInfo, checkAuthorization, openMain } = window.electron;
+  const shouquan = document.getElementById('shouquan');
+  const shuaxin = document.getElementById('shuaxin');
+
+  function setBtnLoading(dom, bool, t) {
+    const text = t || dom.text
+    if (bool) {
+      dom.className = 'button disabled';
+      dom.innerText = '加载中...';
+    } else {
+      dom.className = 'button button2';
+      dom.innerText = text;
+    }
+  }
+
+  function setBtnDisabled(dom, bool) {
+    if (bool) {
+      dom.className = 'button disabled'
+    } else {
+      dom.className = 'button button2'
+    }
+  }
+
+  function setBtnName (dom, name) {
+    dom.innerText = name
+  }
+
+  async function shouquanFn() {
+    if (shouquan.classList.contains('disabled')) {
+      return;
+    }
+    setBtnLoading(shouquan, true)
+    const res = await createOrUpdateMachineInfo();
+    setBtnLoading(shouquan, false)
+    if (res && res.code === 0) {
+      setBtnName(shouquan, '审核中...')
+      setBtnDisabled(shouquan, true)
+    }
+  }
+
+  async function check() {
+    setBtnLoading(shouquan, true)
+    const res = await checkAuthorization();
+    let name = '申请授权'
+    setBtnLoading(shouquan, false)
+    if (res && res.code === 0) {
+      if (!res.data.status) {
+        name = '申请授权'
+      }
+      if (res.data.status === 'normal') {
+        name = '已授权'
+        setBtnDisabled(shouquan, true)
+        openMain()
+      }
+      if (res.data.status === 'review') {
+        name = '审核中...'
+        setBtnDisabled(shouquan, true)
+      }
+      if (res.data.status === 'failed') {
+        name = '未通过'
+        setBtnDisabled(shouquan, true)
+      }
+    }
+    setBtnName(shouquan, name)
+  }
+
+  async function shuaxinFn() {
+    if (shuaxin.classList.contains('disabled')) {
+      return;
+    }
+    setBtnLoading(shuaxin, true)
+    await check()
+    setBtnLoading(shuaxin, false, '刷新重试')
+  }
+
+  async function init() {
+    await check()
+  }
+
+  init()
+
+
+  /**
+   * 复制内容到粘贴板
+   * content : 需要复制的内容
+   * message : 复制完后的提示，不传则默认提示"复制成功"
+   */
+  function copyToClip(content, message) {
+    const aux = document.createElement('input');
+    aux.setAttribute('value', content);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand('copy');
+    document.body.removeChild(aux);
+    const copy = document.getElementById('copy');
+    copy.innerHTML = '✓';
+    copy.style.color = 'green';
+    setTimeout(() => {
+      copy.innerHTML = '复制';
+      copy.style.color = 'gray';
+    }, 2000);
+    return true;
+  }
+</script>
+</body>
+</html>

@@ -6,6 +6,9 @@ interface ElectronApi {
   version: string;
   checkMachineInfoParams;
   getMachineInfo;
+  checkAuthorization;
+  createOrUpdateMachineInfo;
+  openMain;
 }
 
 declare interface Window {

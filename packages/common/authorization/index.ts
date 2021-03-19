@@ -1,10 +1,15 @@
 import os from 'os';
 import { v5 } from 'uuid';
 import md5 from 'md5';
+import qs from 'qs';
+import { isDevEnv, sleep } from '../utils';
+import { request } from '../request';
 
 const { default: getMac } = require('getmac');
 
 const { appName, appId: softwareType } = require('../../../package.json');
+
+export const nestJS = isDevEnv ? 'http://localhost:3002' : 'http://123.57.133.193:8001';
 
 export interface CreateOrUpdateMachineInfoParams {
   machineCode: string;
@@ -56,4 +61,27 @@ export function checkMachineInfoParams() {
     machineCode,
     timestamp: time,
   };
+}
+
+// 请求服务器获取是否授权
+export const checkAuthorization = async () => {
+  const p = qs.stringify({
+    ...checkMachineInfoParams(),
+  });
+  return request(nestJS + `/ks-machine-info?${p}`, {
+    method: 'get',
+  });
+};
+
+/**
+ * 创建或更新机器码信息
+ * @param body
+ */
+export async function createOrUpdateMachineInfo() {
+  const body = getMachineInfo();
+  return request(nestJS + `/ks-machine-info`, {
+    method: 'post',
+    json: true,
+    body,
+  });
 }

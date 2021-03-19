@@ -6,7 +6,11 @@ import { Main, Motion } from './window';
 import { globalConfig } from '/@/common/store';
 import { isDevEnv } from '/@/common/utils';
 import installExtension from 'electron-devtools-installer';
-import { getMachineInfo } from '/@/common/machineInfo';
+import { checkAuthorization } from '/@/common/authorization';
+import { Authorization } from '/@/window/authorization';
+
+// 是否启用授权页面
+const isRole = false;
 
 // 锁定单实例
 const gotTheLock = app.requestSingleInstanceLock();
@@ -31,27 +35,58 @@ if (!gotTheLock) {
   /**
    * 应用初始化窗口 应该在这里
    */
-  function init() {
+  async function init() {
     initIpc();
 
-    console.log(11111, getMachineInfo());
     // 优先启动loading窗口
     const motionWin = new Motion();
     motionWin.open();
 
     const mainWin = new Main({ show: false });
 
+    const authorizationWin = new Authorization({ show: false });
+
     const mainOpen = () => {
       mainWin.open();
       if (mainWin.win) {
         mainWin.win.on('ready-to-show', () => {
           motionWin.close();
+          authorizationWin.close();
           mainWin.win && mainWin.win.show();
         });
       }
     };
 
-    mainOpen();
+    const authorizationOpen = () => {
+      authorizationWin.open();
+      if (authorizationWin.win) {
+        authorizationWin.win.on('ready-to-show', () => {
+          motionWin.close();
+          authorizationWin.win && authorizationWin.win.show();
+        });
+      }
+    };
+
+    if (isRole) {
+      // 验证是否已授权
+      const res = await checkAuthorization();
+      if (res?.data?.status !== 'normal') {
+        // 打开授权页面
+        authorizationOpen();
+      } else {
+        mainOpen();
+      }
+
+      // 监听页面授权回调,如果成功将执行打开主窗口关闭授权窗口
+      ipcMain.on('openMain', () => {
+        motionWin.open();
+        authorizationWin?.close();
+        mainOpen();
+      });
+    } else {
+      mainOpen();
+    }
+
     // const user: User = (userStore.get(USER_INFO) ?? {}) as User;
 
     // if (user.token) {
@@ -70,6 +105,6 @@ if (!gotTheLock) {
         .then((r) => console.log('Added Extension: ', r))
         .catch((e) => console.log('An error occurred: ', e));
     }
-    init();
+    init().then();
   });
 }
