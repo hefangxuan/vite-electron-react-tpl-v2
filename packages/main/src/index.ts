@@ -10,7 +10,7 @@ import { checkAuthorization } from '/@/common/authorization';
 import { Authorization } from '/@/window/authorization';
 
 // 是否启用授权页面
-const isRole = false;
+const isRole = true;
 
 // 锁定单实例
 const gotTheLock = app.requestSingleInstanceLock();
