@@ -86,8 +86,8 @@
     <h1 class='title'>对不起您的机器码未正确授权</h1>
     <div class='macinfo'>
       <div class='text-gray'>机器码:</div>
-      <div class='ml-12 text-orange'>ABCD-DSJ23939-DJJKK-394888</div>
-      <div id='copy' class='cursor text-gray ml-12' onclick="copyToClip('ABCD-DSJ23939-DJJKK-394888')">
+      <div class='ml-12 text-orange' id='macCode'></div>
+      <div id='copy' class='cursor text-gray ml-12' onclick="copyToClip()">
         复制
       </div>
     </div>
@@ -98,7 +98,9 @@
   </div>
 </div>
 <script>
-  const { createOrUpdateMachineInfo, checkAuthorization, openMain } = window.electron;
+  const { createOrUpdateMachineInfo, checkAuthorization, openMain, getMachineInfo } = window.electron;
+
+  const {machineCode} = getMachineInfo();
   const shouquan = document.getElementById('shouquan');
   const shuaxin = document.getElementById('shuaxin');
 
@@ -174,6 +176,7 @@
   }
 
   async function init() {
+    document.getElementById('macCode').innerText=machineCode
     await check()
   }
 
@@ -185,9 +188,9 @@
    * content : 需要复制的内容
    * message : 复制完后的提示，不传则默认提示"复制成功"
    */
-  function copyToClip(content, message) {
+  function copyToClip() {
     const aux = document.createElement('input');
-    aux.setAttribute('value', content);
+    aux.setAttribute('value', machineCode);
     document.body.appendChild(aux);
     aux.select();
     document.execCommand('copy');
