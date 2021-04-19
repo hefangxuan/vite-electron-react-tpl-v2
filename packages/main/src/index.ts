@@ -49,7 +49,7 @@ if (!gotTheLock) {
     const mainOpen = () => {
       mainWin.open();
       if (mainWin.win) {
-        mainWin.win.on('ready-to-show', () => {
+        mainWin.win.webContents.on('did-finish-load', () => {
           motionWin.close();
           authorizationWin.close();
           mainWin.win && mainWin.win.show();
@@ -60,7 +60,7 @@ if (!gotTheLock) {
     const authorizationOpen = () => {
       authorizationWin.open();
       if (authorizationWin.win) {
-        authorizationWin.win.on('ready-to-show', () => {
+        authorizationWin.win.webContents.on('did-finish-load', () => {
           motionWin.close();
           authorizationWin.win && authorizationWin.win.show();
         });
@@ -73,16 +73,15 @@ if (!gotTheLock) {
       if (res?.data?.status !== 'normal') {
         // 打开授权页面
         authorizationOpen();
+        // 监听页面授权回调,如果成功将执行打开主窗口关闭授权窗口
+        ipcMain.on('openMain', () => {
+          motionWin.open();
+          authorizationWin?.close();
+          mainOpen();
+        });
       } else {
         mainOpen();
       }
-
-      // 监听页面授权回调,如果成功将执行打开主窗口关闭授权窗口
-      ipcMain.on('openMain', () => {
-        motionWin.open();
-        authorizationWin?.close();
-        mainOpen();
-      });
     } else {
       mainOpen();
     }

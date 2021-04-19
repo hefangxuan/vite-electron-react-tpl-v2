@@ -47,7 +47,7 @@
     "@vuedx/typescript-plugin-vue": "^0.6.3",
     "chokidar": "^3.5.1",
     "cross-env": "^7.0.3",
-    "electron": "^12.0.2",
+    "electron": "^12.0.4",
     "electron-builder": "^22.10.5",
     "electron-devtools-installer": "^3.1.1",
     "eslint": "^7.22.0",
@@ -57,11 +57,11 @@
     "spectron": "^14.0.0",
     "typescript": "^4.2.3",
     "uuid": "^8.3.2",
-    "vite": "^2.1.2"
+    "vite": "^2.1.5"
   },
   "dependencies": {
     "@hefx/cmp": "^1.0.5",
-    "ahooks": "^2.9.6",
+    "ahooks": "^2.10.0",
     "antd": "^4.14.0",
     "electron-store": "^7.0.2",
     "electron-updater": "^4.3.8",
