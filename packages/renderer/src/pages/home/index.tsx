@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@hefx/cmp';
+import PageHeader from '/@/components/PageHeader';
 
 const Home = (props: any) => (
   <div className="vh-100 w-100 d-flex flex-column flex-between">
