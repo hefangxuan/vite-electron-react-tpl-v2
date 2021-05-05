@@ -11,7 +11,7 @@ export class Motion extends WinSubscribe {
     super(Motion.events);
   }
 
-  public open() {
+  open(): void {
     this.win = new BrowserWindow({
       ...options,
       frame: false,
@@ -25,7 +25,7 @@ export class Motion extends WinSubscribe {
     // this.win.center();
   }
 
-  public close() {
+  close(): void {
     if (!this.win) {
       return;
     }

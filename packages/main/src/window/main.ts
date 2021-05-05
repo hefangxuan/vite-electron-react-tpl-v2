@@ -24,7 +24,7 @@ export class Main extends WinSubscribe {
       autoHideMenuBar: false,
       // title: appName,
       backgroundColor: '#fff',
-      title: '草鞋没号',
+      title: 'hefangxuan',
       ...this.opts,
     });
 
