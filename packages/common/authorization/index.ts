@@ -9,7 +9,7 @@ const { default: getMac } = require('getmac');
 
 const { appName, appId: softwareType } = require('../../../package.json');
 
-export const nestJS = isDevEnv ? 'http://localhost:3002' : 'http://123.57.133.193:8001';
+export const nestJS = isDevEnv ? 'http://localhost:3002' : '';
 
 export interface CreateOrUpdateMachineInfoParams {
   machineCode: string;
