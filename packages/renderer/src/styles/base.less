@@ -1,3 +1,7 @@
+html {
+  font-size: 100px;
+}
+
 @flex-column: 24;
 
 .d-flex * {
@@ -63,44 +67,55 @@
 
 // 生成字体大小
 .font(@i) when(@i <= 60){
+  @d: (@i / 100) + 0rem;
   .f-@{i} {
-    font-size: @i + 0px ;
+    font-size: @d + 0em ;
   }
-  .font((@i + 2));
+  .font((@i + 1));
 }
-.font(12);
+.font(1);
+
+// 生成字体大小
+.fontW(@i) when(@i <= 900){
+  .fw-@{i} {
+    font-weight: @i;
+  }
+  .fontW((@i + 100));
+}
+.fontW(100);
 
 // 生成间距
 .m_p(@i) when(@i <= 32){
+  @d: (@i / 100) + 0rem;
   .m-@{i} {
-    margin: @i + 0px !important;
+    margin: @d + 0rem !important;
   }
   .ml-@{i} {
-    margin-left: @i + 0px !important;
+    margin-left: @d + 0rem !important;
   }
   .mr-@{i} {
-    margin-right: @i + 0px !important;
+    margin-right: @d + 0rem !important;
   }
   .mt-@{i} {
-    margin-top: @i + 0px !important;
+    margin-top: @d + 0rem !important;
   }
   .mb-@{i} {
-    margin-bottom: @i + 0px !important;
+    margin-bottom: @d + 0rem !important;
   }
   .p-@{i} {
-    padding: @i + 0px !important;
+    padding: @d + 0rem !important;
   }
   .pl-@{i} {
-    padding-left: @i + 0px !important;
+    padding-left: @d + 0rem !important;
   }
   .pr-@{i} {
-    padding-right: @i + 0px !important;
+    padding-right: @d + 0rem !important;
   }
   .pt-@{i} {
-    padding-top: @i + 0px !important;
+    padding-top: @d + 0rem !important;
   }
   .pb-@{i} {
-    padding-bottom: @i + 0px !important;
+    padding-bottom: @d + 0rem !important;
   }
   .m_p((@i + 1));
 }
@@ -183,36 +198,36 @@
 
 @border-color: rgba(223, 223, 223, 1);
 .border-bottom {
-  border-bottom: @border-color 1px solid !important;
+  border-bottom: @border-color 0.01rem solid !important;
 }
 
 .border-bottom-d {
-  border-bottom: @border-color 1px dashed !important;
+  border-bottom: @border-color 0.01rem dashed !important;
 }
 .border-top-d {
-  border-top: @border-color 1px dashed !important;
+  border-top: @border-color 0.01rem dashed !important;
 }
 .border-right-d {
-  border-right: @border-color 1px dashed !important;
+  border-right: @border-color 0.01rem dashed !important;
 }
 
 .border-left-d {
-  border-left: @border-color 1px dashed !important;
+  border-left: @border-color 0.01rem dashed !important;
 }
 
 .border-d {
-  border: @border-color 1px dashed !important;
+  border: @border-color 0.01rem dashed !important;
 }
 
 
 
 .text-lg {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 0.18rem;
 }
 
 .text-sm {
-  font-size: 12px;
+  font-size: 0.1rem;
 }
 
 .text-orange {
@@ -290,14 +305,14 @@
 }
 
 .border-radius-md {
-  border-radius: 10px;
+  border-radius: 0.1rem;
 }
 .border-radius-sm {
-  border-radius: 5px;
+  border-radius: 0.05rem;
 }
 
 .border-radius-xm {
-  border-radius: 2px;
+  border-radius: 0.02rem;
 }
 
 
@@ -338,22 +353,22 @@
 // 滚动组件 滚动条样式
 /* the following code snippet is using Less */
 .example-vertical-track {
-  width: 7px;
+  width: 0.07rem;
   background-color: transparent;
   transition: opacity 0.3s;
 }
 
 .example-horizontal-track {
-  height: 7px;
+  height: 0.07rem;
   background-color: transparent;
   transition: opacity 0.3s;
 }
 
 .example-vertical-handler {
-  right: 1px;
-  width: 7px;
+  right: 0.01rem;
+  width: 0.07rem;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  border-radius: 0.04rem;
   transition: opacity 0.3s;
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
@@ -361,10 +376,10 @@
 }
 
 .example-horizontal-handler {
-  bottom: 1px;
-  height: 7px;
+  bottom: 0.01rem;
+  height: 0.07rem;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  border-radius: 0.04rem;
   transition: opacity 0.3s;
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);

@@ -74,7 +74,7 @@ if (!gotTheLock) {
         // 打开授权页面
         authorizationOpen();
         // 监听页面授权回调,如果成功将执行打开主窗口关闭授权窗口
-        ipcMain.on('openMain', () => {
+        ipcMain.once('openMain', () => {
           motionWin.open();
           authorizationWin?.close();
           mainOpen();

@@ -26,7 +26,8 @@
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-renderer": "tsc --noEmit -p packages/renderer/tsconfig.json",
     "typecheck": "npm run typecheck-main && npm run typecheck-preload && npm run typecheck-renderer",
-    "unpack": "npx asar extract dist/win-unpacked/resources/app.asar dist/asar-unpacked/ "
+    "unpack": "npx asar extract dist/win-unpacked/resources/app.asar dist/asar-unpacked/ ",
+    "build:less": "lessc packages/renderer/src/styles/base.less packages/renderer/src/styles/base.css"
   },
   "browserslist": [
     "Chrome 89"

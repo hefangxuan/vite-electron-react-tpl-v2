@@ -30,12 +30,12 @@ const Title = React.memo(
   ({ title, onRightClick = () => {}, rightNode, height, loading }: ITitleProps) => {
     return (
       <div
-        className="w-100 pl-4 pr-4  d-flex flex-row flex-middle flex-between pl-2 border-bottom-d"
+        className="w-100 pl-6 pr-6  d-flex flex-row flex-middle flex-between pl-2 border-bottom-d"
         style={{
           minHeight: height || 36,
         }}
       >
-        <div className="w-100" style={{ color: 'rgba(122, 122, 122, 1.000)' }}>
+        <div className="w-100 fw-500" style={{ color: 'rgba(122, 122, 122, 1.000)' }}>
           {title}
         </div>
         {rightNode && (

@@ -14,7 +14,7 @@ const PageHeader = React.memo((props: IProps) => {
       {(props.title || props.rightNode) && (
         <div className="border-bottom-d p-10 w-100 d-flex flex-between">
           <div className="flex-item d-flex flex-row flex-middle">
-            <div className="text-lg ml-6 mr-6">{props.title}</div>
+            <div className="f-20 fw-700 ml-6 mr-6">{props.title}</div>
             <div className="text-sm text-gray-sm">{props.doc}</div>
           </div>
           <div className="flex-item d-flex flex-row flex-right">
