@@ -1,5 +1,5 @@
 import React from 'react';
-import FreeScrollBar, { Props } from 'react-free-scrollbar';
+import FreeScrollBar, { Props } from '../FreeScrollbar';
 
 interface IProps extends Props {
   /**

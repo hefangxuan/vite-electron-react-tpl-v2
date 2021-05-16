@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useRef, useState } from 'react';
-import FreeScrollBar from 'react-free-scrollbar';
 import { Empty, Spin, Input } from 'antd';
+import FreeScrollBar from '../FreeScrollbar';
 
 const { Search } = Input;
 
@@ -88,7 +88,7 @@ const List = React.memo((props: IProps) => {
   );
 
   return (
-    <div className="flex-1 d-flex flex-column flex-between">
+    <div className="flex-1 d-flex flex-column">
       <div>{header}</div>
       {searchConfig && (
         <div className="p-2 border-bottom-d">
