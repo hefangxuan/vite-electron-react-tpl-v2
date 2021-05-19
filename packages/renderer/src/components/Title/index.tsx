@@ -27,10 +27,11 @@ export interface ITitleProps {
 }
 
 const Title = React.memo(
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ({ title, onRightClick = () => {}, rightNode, height, loading }: ITitleProps) => {
     return (
       <div
-        className="w-100 pl-6 pr-6  d-flex flex-row flex-middle flex-between pl-2 border-bottom-d"
+        className="w-100 pl-6 pr-6  d-flex flex-row flex-middle flex-between border-bottom-d"
         style={{
           minHeight: height || 36,
         }}
@@ -38,11 +39,7 @@ const Title = React.memo(
         <div className="w-100 fw-500" style={{ color: 'rgba(122, 122, 122, 1.000)' }}>
           {title}
         </div>
-        {rightNode && (
-          <div style={{ minWidth: 100 }} onClick={onRightClick}>
-            {rightNode}
-          </div>
-        )}
+        {rightNode && <div onClick={onRightClick}>{rightNode}</div>}
       </div>
     );
   },
