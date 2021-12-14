@@ -26,7 +26,6 @@ if (!gotTheLock) {
    * 初始化ipc应该在这里
    */
   function initIpc() {
-    globalConfig.set('a', 1);
     ipcMain.handle('globalConfig', (event, key) => {
       return globalConfig.get(key);
     });
@@ -44,25 +43,26 @@ if (!gotTheLock) {
 
     const mainWin = new Main({ show: false });
 
-    const authorizationWin = new Authorization({ show: false });
+    let authorizationWin: Authorization | null = null;
 
     const mainOpen = () => {
       mainWin.open();
       if (mainWin.win) {
         mainWin.win.webContents.on('did-finish-load', () => {
-          motionWin.close();
-          authorizationWin.close();
           mainWin.win && mainWin.win.show();
+          authorizationWin?.close();
+          motionWin.close();
         });
       }
     };
 
     const authorizationOpen = () => {
-      authorizationWin.open();
-      if (authorizationWin.win) {
+      authorizationWin = new Authorization({ show: false });
+      authorizationWin?.open();
+      if (authorizationWin?.win) {
         authorizationWin.win.webContents.on('did-finish-load', () => {
           motionWin.close();
-          authorizationWin.win && authorizationWin.win.show();
+          authorizationWin?.win && authorizationWin.win.show();
         });
       }
     };

@@ -1,13 +1,17 @@
-import {chrome} from '../../electron-vendors.config.js'
-import {join} from 'path'
-import externalPackages from '../../external-packages.config.js'
-import {defineConfig} from 'vite'
+import { chrome } from '../../electron-vendors.config.js';
+import { join } from 'path';
+import externalPackages from '../../external-packages.config.js';
+import { defineConfig } from 'vite';
+
+const PACKAGE_ROOT = __dirname;
 
 /**
  * @see https://vitejs.dev/config/
  */
 export default defineConfig({
-  root: __dirname,
+  mode: process.env.MODE,
+  root: PACKAGE_ROOT,
+  envDir: process.cwd(),
   resolve: {
     alias: {
       '/@/': join(__dirname, 'src') + '/',
@@ -30,5 +34,6 @@ export default defineConfig({
       },
     },
     emptyOutDir: true,
+    brotliSize: false,
   },
-})
+});
