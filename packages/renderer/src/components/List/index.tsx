@@ -25,6 +25,7 @@ interface IProps {
   locale?: string;
   onLoadMore?: (pageInfo: PageInfo) => Promise<boolean>;
   searchConfig?: SearchConfigType;
+  createBtn?: ReactNode;
 }
 const List = React.memo((props: IProps) => {
   // 是否已加载完成
@@ -50,6 +51,7 @@ const List = React.memo((props: IProps) => {
     rowKey = 'id',
     onLoadMore = () => false,
     searchConfig,
+    createBtn,
   } = props;
 
   const renderDOM = useCallback(
@@ -131,6 +133,7 @@ const List = React.memo((props: IProps) => {
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={locale || '缺少数据'} />
           </Spin>
         )}
+        {createBtn}
       </div>
       <div>{footer}</div>
     </div>
