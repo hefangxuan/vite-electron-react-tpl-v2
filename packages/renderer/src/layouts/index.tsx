@@ -5,7 +5,7 @@ import { useElectron } from '/@/hooks/electron';
 const Layout = React.memo((props: any) => {
   const { appName, version } = useElectron();
   useTitle(`${appName} V${version}`);
-  return <div className="vh-100 d-flex flex-column">{props.children}</div>;
+  return <div className="h-screen flex flex-col">{props.children}</div>;
 });
 
 export default Layout;
