@@ -6,10 +6,8 @@ import App from '/@/router';
 import './styles/global.less';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
-      <App />
-    </ConfigProvider>
-  </React.StrictMode>,
+  <ConfigProvider locale={zhCN}>
+    <App />
+  </ConfigProvider>,
   document.getElementById('app'),
 );

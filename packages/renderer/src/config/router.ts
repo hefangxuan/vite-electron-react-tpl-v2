@@ -1,5 +1,5 @@
-import Index from '/@/pages'
-import Home from '/@/pages/home'
+import Index from '/@/pages';
+import Home from '/@/pages/home';
 
 export interface RouterType {
   title?: string;
@@ -16,7 +16,7 @@ export const routers: RouterType[] = [
   },
   {
     name: 'Home',
-    path: '/home',
+    path: '/synonym',
     component: Home,
   },
-]
+];
