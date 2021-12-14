@@ -88,10 +88,10 @@ const List = React.memo((props: IProps) => {
   );
 
   return (
-    <div className="flex-1 d-flex flex-column">
+    <div className="flex-1 flex flex-col">
       <div>{header}</div>
       {searchConfig && (
-        <div className="p-2 border-bottom-d">
+        <div className="p-2 border-b">
           <Search
             addonAfter
             placeholder={searchConfig?.placeholder || '昵称|ID|手机号|模糊搜索'}
@@ -109,7 +109,7 @@ const List = React.memo((props: IProps) => {
             <Spin spinning={loading}>
               {renderDOM(searchValue ? searchRes : dataSource)}
               {isMore ? (
-                <div className="p-10 w-100 d-flex flex-row flex-middle flex-center">没有更多</div>
+                <div className="p-3 w-full flex flex-row justify-center items-center">没有更多</div>
               ) : (
                 <div
                   onClick={async () => {

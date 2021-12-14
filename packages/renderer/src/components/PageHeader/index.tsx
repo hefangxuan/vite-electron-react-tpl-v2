@@ -13,11 +13,11 @@ const PageHeader = React.memo((props: IProps) => {
     <div className="w-full h-full flex flex-col justify-between hefx-page-header">
       {(props.title || props.rightNode) && (
         <div className="border-b p-2 w-full flex flex-row justify-between">
-          <div className="flex-item flex flex-row items-center">
-            <div className="f-20 fw-700 ml-6 mr-6">{props.title}</div>
+          <div className="flex-1 flex flex-row items-center">
+            <div className="f-20 font-bold ml-2 mr-2">{props.title}</div>
             <div className="text-sm text-gray-sm">{props.doc}</div>
           </div>
-          <div className="flex-item flex flex-row flex-right">
+          <div className="flex-1 flex flex-row justify-end">
             <div className="right-node">
               {props.rightNode &&
                 props.rightNode.map((item) => {
