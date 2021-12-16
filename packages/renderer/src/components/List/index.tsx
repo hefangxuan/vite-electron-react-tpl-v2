@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useRef, useState } from 'react';
 import { Empty, Spin, Input } from 'antd';
-import FreeScrollBar from '../FreeScrollbar';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 const { Search } = Input;
 
@@ -105,9 +105,10 @@ const List = React.memo((props: IProps) => {
           />
         </div>
       )}
+      {createBtn}
       <div className="flex-1">
         {dataSource?.length > 0 ? (
-          <FreeScrollBar autohide className="example">
+          <Scrollbars autoHide>
             <Spin spinning={loading}>
               {renderDOM(searchValue ? searchRes : dataSource)}
               {isMore ? (
@@ -127,13 +128,12 @@ const List = React.memo((props: IProps) => {
                 </div>
               )}
             </Spin>
-          </FreeScrollBar>
+          </Scrollbars>
         ) : (
           <Spin spinning={loading}>
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={locale || '缺少数据'} />
           </Spin>
         )}
-        {createBtn}
       </div>
       <div>{footer}</div>
     </div>
