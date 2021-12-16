@@ -1,11 +1,12 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { request, RequestProps } from '../../common/request';
+import _request from 'request-promise';
 import {
   getMachineInfo,
   checkMachineInfoParams,
   checkAuthorization,
   createOrUpdateMachineInfo,
 } from '../../common/authorization';
+import { ElectronApi } from '../types/electron-api';
 
 const { appName, appId, version } = require('../../../package.json');
 
@@ -18,7 +19,7 @@ const api: ElectronApi = {
   appId,
   version,
   versions: process.versions as Record<string, string>,
-  request: async (url: string, options: RequestProps) => await request(url, options),
+  request: _request,
   getMachineInfo,
   checkMachineInfoParams,
   checkAuthorization,
