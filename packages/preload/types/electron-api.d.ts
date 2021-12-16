@@ -1,6 +1,8 @@
-interface ElectronApi {
+export {};
+
+export interface ElectronApi {
   readonly versions: Record<string, string>;
-  readonly request;
+  request: typeof import('request-promise');
   appName: string;
   appId: string;
   version: string;
@@ -11,7 +13,9 @@ interface ElectronApi {
   openMain;
 }
 
-declare interface Window {
-  electron: Readonly<ElectronApi>;
-  electronRequire?: NodeRequire;
+declare global {
+  interface Window {
+    electron: Readonly<ElectronApi>;
+    electronRequire?: NodeRequire;
+  }
 }
