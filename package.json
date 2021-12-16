@@ -65,8 +65,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "ahooks": "^3.0.2",
-    "antd": "^4.15.5",
+    "ahooks": "^2.10.14",
+    "antd": "^4.17.3",
     "electron-store": "^8.0.0",
     "electron-updater": "^4.3.8",
     "getmac": "^5.17.0",
